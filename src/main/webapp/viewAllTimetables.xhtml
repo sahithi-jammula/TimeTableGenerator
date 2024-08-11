@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+    <title>View All Faculty Timetables</title>
+    <style>
+        nav {
+            background-color: darkblue;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a.logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: orange;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        body {
+            background-image: url('https://images.pexels.com/photos/6893329/pexels-photo-6893329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="adminhome.jsf" class="logo">Schedule Maker</a>
+        <a href="adminhome.jsf">Home</a>
+        <a href="viewAllTimetables.jsf">View All Timetables</a>
+        <a href="adminlogout.jsf">Logout</a>
+    </nav>
+
+    <div class="container">
+        <h3>All Faculty Timetables</h3>
+        <h:dataTable value="#{timetableBean.allTimetables}" var="timetable" border="1">
+            <h:column>
+                <f:facet name="header">Faculty Name</f:facet>
+                #{timetable.faculty.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Course</f:facet>
+                #{timetable.course.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Day</f:facet>
+                #{timetable.day}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Time</f:facet>
+                #{timetable.time}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Location</f:facet>
+                #{timetable.location}
+            </h:column>
+        </h:dataTable>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+<h:head>
+    <title>Generate Timetable for All Faculty</title>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/6893329/pexels-photo-6893329.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background-color: darkblue;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav a.logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: orange;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 50px); /* Adjusted for navbar height */
+        }
+        .form-wrapper {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h:form {
+            text-align: center;
+        }
+        .styled-button {
+            padding: 10px 20px;
+            background-color: ;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        .styled-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</h:head>
+<h:body>
+    <ui:include src="/adminhome.jsp" />
+    <div class="container">
+        <div class="form-wrapper">
+            <h:form>
+                <h:commandButton value="Generate Timetable for All Faculty" action="#{timetableBean.generateTimetableForAllFaculty}" styleClass="styled-button" />
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>

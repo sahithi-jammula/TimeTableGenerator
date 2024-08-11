@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Faculty Registration</title>
+    <h:outputStylesheet library="css" name="css/style.css"/>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            background-image: url('#{resource['images/adminlogin.jpg']}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .registration-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px; /* Adjust width as needed */
+        }
+
+        .registration-container h3 {
+            margin-bottom: 20px;
+        }
+
+        .registration-container .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .registration-container .button:hover {
+            background-color: #0056b3;
+        }
+
+        .registration-container input[type="text"],
+        .registration-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .registration-container input::placeholder {
+            color: #888;
+        }
+
+        .registration-container .signup-message {
+            margin-top: 15px;
+        }
+
+        .registration-container .signup-message a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .registration-container .signup-message a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</h:head>
+<body>
+    <div class="registration-container">
+        <h3 align='center'><u>Faculty Registration</u></h3>
+
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputLabel for="id" value="Enter ID"/>
+                <h:inputText id="id" required="true" requiredMessage="Enter ID" value="#{facultybean.id}">
+                    <f:passThroughAttribute name="placeholder" value="Enter your ID"/>
+                </h:inputText>
+                <h:message for="id" style="color:red"/>
+
+                <h:outputLabel for="name" value="Enter Name"/>
+                <h:inputText id="name" required="true" requiredMessage="Enter Name" value="#{facultybean.name}">
+                    <f:passThroughAttribute name="placeholder" value="Enter your name"/>
+                </h:inputText>
+                <h:message for="name" style="color:red"/>
+
+                <h:outputLabel for="gender" value="Select Gender"/>
+                <h:selectOneRadio id="gender" required="true" requiredMessage="Select Gender" value="#{facultybean.gender}">
+                    <f:selectItem itemLabel="Male" itemValue="MALE"/>
+                    <f:selectItem itemLabel="Female" itemValue="FEMALE"/>
+                    <f:selectItem itemLabel="Others" itemValue="OTHERS"/>
+                </h:selectOneRadio>
+                <h:message for="gender" style="color:red"/>
+
+                <h:outputLabel for="department" value="Select Department"/>
+                <h:selectOneMenu id="department" required="true" requiredMessage="Select Department" value="#{facultybean.branch}">
+                    <f:selectItem itemLabel="--Select--" itemValue=""/>
+                    <f:selectItem itemLabel="cse" itemValue="CSE"/>
+                    <f:selectItem itemLabel="ece" itemValue="ECE"/>
+                    <f:selectItem itemLabel="eee" itemValue="EEE"/>
+                </h:selectOneMenu>
+                <h:message for="department" style="color:red"/>
+
+                <h:outputLabel for="dob" value="Enter Date of Birth"/>
+                <h:inputText id="dob" required="true" requiredMessage="Enter date of birth" value="#{facultybean.dob}">
+                    <f:passThroughAttribute name="placeholder" value="Enter your date of birth"/>
+                </h:inputText>
+                <h:message for="dob" style="color:red"/>
+
+                <h:outputLabel for="email" value="Enter Email"/>
+                <h:inputText id="email" required="true" requiredMessage="Enter Email" value="#{facultybean.email}">
+                    <f:passThroughAttribute name="placeholder" value="Enter your email"/>
+                </h:inputText>
+                <h:message for="email" style="color:red"/>
+
+                <h:outputLabel for="contact" value="Enter Contact"/>
+                <h:inputText id="contact" required="true" requiredMessage="Enter Contact" validatorMessage="Contact No must contain 10 digits only" value="#{facultybean.contact}">
+                    <f:validateRegex pattern="[6789][0-9]{9}"/>
+                    <f:passThroughAttribute name="placeholder" value="Enter your contact number"/>
+                </h:inputText>
+                <h:message for="contact" style="color:red"/>
+
+                <h:outputLabel for="password" value="Enter Password"/>
+                <h:inputSecret id="password" required="true" requiredMessage="Enter Password" value="#{facultybean.password}">
+                    <f:passThroughAttribute name="placeholder" value="Enter your password"/>
+                </h:inputSecret>
+                <h:message for="password" style="color:red"/>
+            </h:panelGrid>
+
+            <h:commandButton id="signup" class="button" value="Submit" action="#{facultybean.add()}"/>
+            <h:message for="add" style="color:red"/>
+        </h:form>
+
+        <div class="signup-message">
+            <h:outputText value="Already have an account? "/>
+            <h:outputLink value="facultylogin.jsf">Login</h:outputLink>
+        </div>
+    </div>
+</body>
+</html>

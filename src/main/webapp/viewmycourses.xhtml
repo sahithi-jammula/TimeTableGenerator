@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>View My Courses</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.pexels.com/photos/6893329/pexels-photo-6893329.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background-color: darkblue;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav a.logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: orange;
+            padding: 14px 16px;
+            float: left;
+            text-decoration: none;
+        }
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        h3 {
+            margin-top: 20px;
+            color: darkblue;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: darkblue;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</h:head>
+<h:body>
+    <nav>
+        <a href="" class="logo">Schedule Maker</a>
+        <a href="facultyhome.jsp">Home</a>
+        <a href="facultyprofile.jsp">Profile</a>
+        <a href="updatefacultyprofile.jsp">Update Profile</a>
+        <a href="viewmycourses.jsf">My Courses</a>
+        <a href="viewTimetable.jsp">View Timetable</a>
+        <a href="facultylogout.jsp">Logout</a>
+    </nav>
+
+    <h3 align='center'><u>My Courses</u></h3>
+
+    <h:form>
+        <h:dataTable value="#{facultybean.mappedCourses}" var="course">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Course ID" />
+                </f:facet>
+                <h:outputText value="#{course.coursecode}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Component" />
+                </f:facet>
+                <h:outputText value="#{course.component}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Section" />
+                </f:facet>
+                <h:outputText value="#{course.section}" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>

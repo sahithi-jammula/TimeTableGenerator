@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+<h:head>
+    <title>View All Faculty</title>
+    <style>
+        body {
+                       background-image: url('https://images.pexels.com/photos/6893329/pexels-photo-6893329.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2');
+           
+            font-family: Arial, sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            color: white;
+            background-color: darkblue;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: darkblue;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .delete-link {
+            color: red;
+            text-decoration: none;
+        }
+
+        .delete-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</h:head> 
+<body> 
+
+    <ui:include src="/adminhome.jsp" />
+ 
+    <div class="container">
+        <h3>View All Faculty</h3>
+        <p>Total Faculty: #{adminbean.getfacultycount()}</p>
+
+        <h:dataTable value="#{facultybean.faclist}" var="fac">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{fac.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{fac.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Gender</f:facet>
+                #{fac.gender}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Department</f:facet>
+                #{fac.branch}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                #{fac.email}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Date of Birth</f:facet>
+                #{fac.dob}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Contact</f:facet>
+                #{fac.contact}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <h:commandLink value="Delete" action="#{facultybean.delete(fac.id)}" styleClass="delete-link"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </div>
+
+</body> 
+</html>

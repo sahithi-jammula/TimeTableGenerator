@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <title>Map Course to Faculty</title>
+    <style>
+        body {
+                    background-image: url('https://images.pexels.com/photos/6893329/pexels-photo-6893329.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2');
+        
+            font-family: Arial, sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            color: white;
+            background-color: darkblue;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h:panelGrid {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h:outputLabel {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        h:selectOneMenu, h:inputText {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        h:selectOneMenu::after {
+            content: attr(placeholder);
+            color: #aaa;
+            font-style: italic;
+            display: block;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        h:commandButton {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        h:commandButton:hover {
+            background-color: #555;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <ui:include src="/adminhome.jsp"/>
+
+    <div class="form-container">
+        <h3>Map Course to Faculty</h3>
+
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:outputLabel value="Course Code:" />
+                <h:selectOneMenu value="#{mapcoursebean.coursecode}" placeholder="Select Course Code">
+                    <f:selectItems value="#{mapcoursebean.courseList}" var="course" itemValue="#{course.coursecode}" itemLabel="#{course.coursecode}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel value="Faculty ID:" />
+                <h:selectOneMenu value="#{mapcoursebean.facultyid}" placeholder="Select Faculty ID">
+                    <f:selectItems value="#{mapcoursebean.facultyList}" var="faculty" itemValue="#{faculty.id}" itemLabel="#{faculty.id}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="component" value="Component:"/>
+                <h:selectOneMenu id="component" required="true" requiredMessage="Select Component Type" value="#{mapcoursebean.component}" placeholder="Select Component">
+                    <f:selectItem itemLabel="Select" itemValue=""/>
+                    <f:selectItem itemLabel="L" itemValue="L"/>
+                    <f:selectItem itemLabel="T" itemValue="T"/>
+                    <f:selectItem itemLabel="P" itemValue="P"/>
+                    <f:selectItem itemLabel="S" itemValue="S"/>
+                </h:selectOneMenu>
+                <h:message for="component" styleClass="error"/>
+
+                <h:outputLabel value="Section:"/>
+                <h:inputText value="#{mapcoursebean.section}" placeholder="Enter Section" />
+
+                <h:commandButton value="Map Course" action="#{mapcoursebean.mapCourse}" />
+            </h:panelGrid>
+        </h:form>
+    </div>
+</body>
+</html>

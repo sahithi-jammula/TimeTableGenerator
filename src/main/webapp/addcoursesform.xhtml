@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Add Courses</title>
+    <h:outputStylesheet name="css/style"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.pexels.com/photos/6893329/pexels-photo-6893329.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2');
+            background-size: cover;
+            color: #333;
+        }
+        
+        h3 {
+            color: black;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: underline;
+        }
+        .navbar-container {
+            margin-bottom: 20px;
+        }
+        nav {
+            background-color: darkblue;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav a.logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: orange;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        nav a.active {
+            color: orange;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent background for form container */
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+        }
+        h:panelGrid {
+            width: 100%;
+        }
+        h:outputLabel {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        h:inputText, h:selectOneMenu {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</h:head>
+<body>
+  <ui:include src="/adminhome.jsp" />
+
+    <div class="form-container">
+        <h3>Add New Course</h3>
+                <center>
+        
+        <h:form>
+        
+            <h:panelGrid columns="3" cellpadding="5">
+                <h:outputLabel for="coursecode" value="Course Code:"/>
+                <h:inputText id="coursecode" required="true" requiredMessage="Enter Course Code" value="#{coursebean.coursecode}" />
+                <h:message for="coursecode" styleClass="error"/>
+
+                <h:outputLabel for="coursename" value="Course Name:"/>
+                <h:inputText id="coursename" required="true" requiredMessage="Enter Course Name" value="#{coursebean.coursename}"/>
+                <h:message for="coursename" styleClass="error"/>
+
+                <h:outputLabel for="coursetype" value="Course Type:"/>
+                <h:selectOneMenu id="coursetype" required="true" requiredMessage="Select Course Type" value="#{coursebean.coursetype}">
+                    <f:selectItem itemLabel="Select Content" itemValue=""/>
+                    <f:selectItem itemLabel="L" itemValue="L"/>
+                    <f:selectItem itemLabel="T" itemValue="T"/>
+                    <f:selectItem itemLabel="P" itemValue="P"/>
+                    <f:selectItem itemLabel="S" itemValue="S"/>
+                </h:selectOneMenu>
+                <h:message for="coursetype" styleClass="error"/>
+
+                <h:outputLabel for="coursedept" value="Course Department:"/>
+                <h:selectOneMenu id="coursedept" required="true" requiredMessage="Select Course Department" value="#{coursebean.coursedept}">
+                    <f:selectItem itemLabel="Select Content" itemValue=""/>
+                    <f:selectItem itemLabel="CSE" itemValue="CSE"/>
+                    <f:selectItem itemLabel="ECE" itemValue="ECE"/>
+                    <f:selectItem itemLabel="AIDS" itemValue="AIDS"/>
+                    <f:selectItem itemLabel="CSIT" itemValue="CSIT"/>
+                </h:selectOneMenu>
+                <h:message for="coursedept" styleClass="error"/>
+
+                <h:outputLabel for="add"/>
+                <h:commandButton id="add" class="button" value="Add Course" action="#{coursebean.add()}"/>
+                <h:message for="add" styleClass="error"/>
+            </h:panelGrid>
+        </h:form>
+                </center>
+        
+    </div>
+</body>
+</html>
